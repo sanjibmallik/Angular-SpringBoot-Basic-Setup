@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.csrf().disable()
+		//.csrf().disable()
 		//.cors().disable()
 		//.anonymous().authorities("ROLE_ANONYMOUS")
         //.and()
@@ -73,6 +73,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.logout()
 				.permitAll();
+		
+		http.csrf().ignoringAntMatchers("/login");
 	}
 
 	@Bean
