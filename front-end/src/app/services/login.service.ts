@@ -28,13 +28,16 @@ export class LoginService {
     console.log(url);
     let params = new HttpParams().set('username',loginUser.username).set('password',loginUser.password);
     return this._http.post(url, params, {
-      headers: header,
-      withCredentials: true
+      headers: header
+      //,withCredentials: true
     })
       .pipe(
         map((data: any) => {
-          let userDetails: LoginUser = data.loginDetails;
-          if (loginUser.username === userDetails.username && loginUser.password === userDetails.password) {
+	console.log(data)
+	this._router.navigate([RouterPath.SLASH + RouterPath.DASHBOARD])
+            this._toastr.success("Login successful");
+          /*let userDetails: LoginUser = data.loginDetails;
+          if (loginUser.username === data.username ) {
             this._router.navigate([RouterPath.SLASH + RouterPath.DASHBOARD])
             this._toastr.success("Login successful");
             return true;
@@ -43,7 +46,7 @@ export class LoginService {
             this._toastr.preventDuplicate();
             this._toastr.error("Error while login");
             return false;
-          }
+          }*/
         })
       )
 

@@ -1,27 +1,26 @@
 package com.example.demo.controller;
 
-/**
- * 
- */
-
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
 
 @RestController
-@RequestMapping("/")
+
 public class HomeController {
-	
-	
-	
-@GetMapping(path ="/hellos")	
-public String hello() {
-	System.out.println("successfully logged in");
-	return "Hello ..";
-}
+
+	/*
+	 * @GetMapping(path ="/login") public String error() {
+	 * System.out.println("here in chaneg"); return "forward:/index.html"; }
+	 */
+
+	@GetMapping(path = "/hellos1")
+	public String hello1() {
+		System.out.println("successfully logged in");
+		return "Hello ..";
+	}
+
+	@GetMapping(path = "/secured/abc")
+	public String hello2() {
+		System.out.println("successfully logged in");
+		return "Hello ..";
+	}
 }

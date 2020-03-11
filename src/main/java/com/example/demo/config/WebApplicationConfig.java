@@ -11,7 +11,7 @@ public class WebApplicationConfig implements
   WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
   
     public void customize(ConfigurableServletWebServerFactory factory) {
-    	ErrorPage errorPage = new ErrorPage(HttpStatus.NOT_FOUND, "/index.html");
+    	ErrorPage errorPage = new ErrorPage(HttpStatus.NOT_FOUND, "/");
        factory.addErrorPages(new ErrorPage[]{errorPage});
      }
 }

@@ -21,7 +21,7 @@ export class UrlConstructService {
 
 
   mainUrl(path: string) {
-    let use = (this.getIsOn4200() === true) ? this.url + '/' + path : '/' + path;
+    let use = (this.getIsOn4200() === true) ? this.url  + path : path;
     return use;
   }
 
