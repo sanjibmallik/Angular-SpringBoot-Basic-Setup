@@ -6,9 +6,10 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
-@Configuration
-public class WebApplicationConfig implements
-  WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
+//@Configuration
+public class WebApplicationConfig 
+//implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> 
+{
   
     public void customize(ConfigurableServletWebServerFactory factory) {
     	ErrorPage errorPage = new ErrorPage(HttpStatus.NOT_FOUND, "/");
