@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.Person;
+
 @RestController
 
 public class HomeController {
@@ -17,9 +19,15 @@ public class HomeController {
 		System.out.println("successfully logged in");
 		return "Hello ..";
 	}
+	
+	@GetMapping(path = "/hellos2")
+	public Person hello2() {
+		
+		return new Person();
+	}
 
 	@GetMapping(path = "/secured/abc")
-	public String hello2() {
+	public String securedabc() {
 		System.out.println("successfully logged in");
 		return "Hello ..";
 	}

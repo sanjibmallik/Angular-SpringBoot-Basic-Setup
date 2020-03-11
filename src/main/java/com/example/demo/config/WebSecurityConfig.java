@@ -19,6 +19,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,12 +35,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		//.csrf().disable()
+		//.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
 		//.cors().disable()
 		//.anonymous().authorities("ROLE_ANONYMOUS")
         //.and()
         .authorizeRequests()
         .antMatchers(HttpMethod.OPTIONS, "/").permitAll()
         .antMatchers(HttpMethod.GET, "/").permitAll()
+        .antMatchers(HttpMethod.POST, "/person").permitAll()
         //.antMatchers(HttpMethod.GET, "/login").permitAll()
 			
 			
@@ -74,8 +79,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.permitAll();
 		
-		http.csrf().ignoringAntMatchers("/login");
+		http.csrf().ignoringAntMatchers("/login", "/person");
+		//next remove /person from here
+		//try invoking from angular
+		//
 	}
+	
+	private CsrfTokenRepository csrfTokenRepository() {
+		  HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+		  repository.setHeaderName("X-XSRF-TOKEN");
+		  return repository;
+		}
 
 	@Bean
 	@Override

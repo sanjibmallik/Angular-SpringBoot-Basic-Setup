@@ -2,3 +2,7 @@ https://stackoverflow.com/questions/40489606/spring-controlleradvice-vs-errorcon
 https://www.baeldung.com/spring-boot-custom-error-page
 https://www.baeldung.com/exception-handling-for-rest-with-spring
 https://www.logicbig.com/tutorials/spring-framework/spring-boot/implementing-error-controller.html
+https://medium.com/sparkles-blog/angular2-and-spring-a-friend-in-security-need-is-a-friend-against-csrf-indeed-9f83eaa9ca2e
+https://docs.spring.io/spring-security/site/docs/3.2.0.CI-SNAPSHOT/reference/html/csrf.html
+https://docs.spring.io/spring-security/site/docs/5.4.x-SNAPSHOT/reference/html5/#exploits
+https://security.stackexchange.com/questions/127027/how-does-xsrf-token-per-request-work-angular-solution
