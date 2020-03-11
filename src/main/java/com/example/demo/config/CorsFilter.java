@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
+/*
+ * Feel free to disable using application properties
+ * when running in tomcat without 4200.
+ * otherwise is harmless
+ */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter 
