@@ -13,8 +13,8 @@ public class DemoWhiteLabelErrorController implements ErrorController  {
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
     	Integer status = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        Throwable problem=(Throwable) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-    	System.out.println("in error with "+status+" and exception "+problem);
+        
+    	System.out.println("in error with "+status);
         return "/";
     }
  
