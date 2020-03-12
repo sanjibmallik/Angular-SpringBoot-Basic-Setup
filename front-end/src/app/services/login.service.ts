@@ -19,6 +19,7 @@ const header = new HttpHeaders({
 export class LoginService {
 	
 	private httpClient:HttpClient;
+	private authenticateStatus: boolean = false;
 
 	constructor(private _http: HttpClient,
 		private _router: Router,
@@ -34,17 +35,19 @@ export class LoginService {
 		let params = new HttpParams().set('username', loginUser.username).set('password', loginUser.password);
 		return this.httpClient.post(url, params, {
 			headers: header
-			//,withCredentials: true
 		})
 			.pipe(
 				map((data: any) => {
-					console.log(data)
+					this.authenticateStatus = true;
 					this._router.navigate([RouterPath.SLASH + RouterPath.DASHBOARD])
 					this._toastr.success("Login successful");
-
 				})
 			)
 
+	}
+
+	isAuthenticated(){
+		return this.authenticateStatus;
 	}
 
 }
