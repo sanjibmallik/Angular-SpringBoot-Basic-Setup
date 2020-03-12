@@ -34,8 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		//.httpBasic().and()
 		//.csrf().disable()
-		//.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
+		//.csrf().csrfTokenRepository(csrfTokenRepository()).and()
+		.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
 		//.cors().disable()
 		//.anonymous().authorities("ROLE_ANONYMOUS")
         //.and()
@@ -77,19 +79,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 			.logout()
+			.deleteCookies("JSESSIONID")
 				.permitAll();
 		
-		http.csrf().ignoringAntMatchers("/login", "/person");
+		http.csrf().ignoringAntMatchers("/login");
 		//next remove /person from here
 		//try invoking from angular
 		//
 	}
 	
-	private CsrfTokenRepository csrfTokenRepository() {
-		  HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
-		  repository.setHeaderName("X-XSRF-TOKEN");
-		  return repository;
-		}
+//	private CsrfTokenRepository csrfTokenRepository() {
+//		  HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+//		  repository.setHeaderName("X-XSRF-TOKEN");
+//		  return repository;
+//		}
 
 	@Bean
 	@Override
