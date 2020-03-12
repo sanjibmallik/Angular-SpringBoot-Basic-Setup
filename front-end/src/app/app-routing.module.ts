@@ -1,3 +1,5 @@
+import { AuthGuardService } from './services/guards/auth-guard.service';
+import { PersonComponent } from './components/person/person.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,7 +16,10 @@ const routes: Routes = [
     path: RouterPath.LOGIN, component: LoginComponent
   },
   {
-    path: RouterPath.DASHBOARD, component: DashboardComponent
+    path: RouterPath.DASHBOARD, component: DashboardComponent, canActivate:[AuthGuardService]
+  },
+  {
+    path: RouterPath.PERSON, component: PersonComponent, canActivate:[AuthGuardService]
   },
   {
     path: '**', component: PageNotFoundComponent
