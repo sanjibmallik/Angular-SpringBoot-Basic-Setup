@@ -34,20 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		//.httpBasic().and()
-		//.csrf().disable()
-		//.csrf().csrfTokenRepository(csrfTokenRepository()).and()
+
 		.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
-		//.cors().disable()
-		//.anonymous().authorities("ROLE_ANONYMOUS")
-        //.and()
+
         .authorizeRequests()
         .antMatchers(HttpMethod.OPTIONS, "/").permitAll()
         .antMatchers(HttpMethod.GET, "/").permitAll()
         .antMatchers(HttpMethod.POST, "/person").permitAll()
-        //.antMatchers(HttpMethod.GET, "/login").permitAll()
-			
-			
         .antMatchers( "/secured/**").authenticated()
 				//.anyRequest().authenticated()
 				.and()
