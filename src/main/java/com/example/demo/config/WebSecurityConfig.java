@@ -76,16 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll();
 		
 		http.csrf().ignoringAntMatchers("/login");
-		//next remove /person from here
-		//try invoking from angular
-		//
+		
 	}
 	
-//	private CsrfTokenRepository csrfTokenRepository() {
-//		  HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
-//		  repository.setHeaderName("X-XSRF-TOKEN");
-//		  return repository;
-//		}
+
 
 	@Bean
 	@Override
