@@ -17,7 +17,9 @@ import org.springframework.stereotype.Component;
 /*
  * Feel free to disable using application properties
  * when running in tomcat without 4200.
- * otherwise is harmless
+ * by using Conditional
+ * This class is there just to help during development
+ * when angular is running in 4200 in node and back end in 8080
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
