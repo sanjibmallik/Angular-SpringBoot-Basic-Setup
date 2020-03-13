@@ -4,21 +4,20 @@
 
 Run command "mvn clean package -Pnpmbuild"  
   -This command will download node js software  
+  -First build willtake longer. Subsequent builds will be faster
   -Perform npm build for front-end angular project   
-  -Create static folder in ${baseDirectory}/resources  
-  -Copy front-end resources to static folder.  
-  -Clean target directory  
-  -package latest war file  
+  -package latest war file 
+  -launch the war in a server     
 
 
 ####Build with out any profile ###########
  -From command line, navigate to front-end folder  
+ -Will need node and npm already installed.
  -Run "npm install"  
  -Run "ng build"    
  -Run command "mvn package"  
  -launch the war in a server    
- -refresh src/main/resources/static  
- -run on server in eclipse  
+
  
 ####Using 4200 ###########
 During local development can also launch locally angular on 4200 
