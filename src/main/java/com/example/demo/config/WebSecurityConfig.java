@@ -72,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						}
 						else
 						{
-							throw new RuntimeException("improve logic and return type here according to the customisation you must have implemented for "+principal.getClass().getName());
+							throw new RuntimeException("improve logic  here according to the customisation you must have implemented for "+principal.getClass().getName());
 						}
 						
 				       
