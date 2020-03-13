@@ -12,6 +12,7 @@ const routes: Routes = [
   {
     path: '', redirectTo: RouterPath.LOGIN, pathMatch: 'full'
   },
+ 
   {
     path: RouterPath.LOGIN, component: LoginComponent
   },
@@ -22,7 +23,7 @@ const routes: Routes = [
     path: RouterPath.PERSON, component: PersonComponent
   },
   {
-    path: '**', component: PageNotFoundComponent
+    path: '**', redirectTo:RouterPath.DASHBOARD
   }
 ];
 
