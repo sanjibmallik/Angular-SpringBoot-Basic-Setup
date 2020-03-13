@@ -67,8 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				        response.setStatus(HttpServletResponse.SC_OK);
 				        writer.flush();
 				        writer.close();
-				        System.out.println("loggedonsessionid="+request.getSession(false).getId());
-				        System.out.println("user="+user+"@"+user.getClass().getName());
+				       
 					}
 				})
 				.permitAll()
