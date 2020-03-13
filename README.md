@@ -15,7 +15,7 @@ Run command "mvn clean package -Pnpmbuild"  from project location -Angular-Sprin
  -From command line, navigate to front-end folder  
  -Will need node and npm already installed.
  -Run "npm install"  
- -Run "ng build"    
+ -Run "npm run-script build"    
  -Run command "mvn package"  from project location -Angular-SpringBoot-Basic-Setup (demo)  
  -launch the war in a server    
  -Test at http://localhost:8080/demo
