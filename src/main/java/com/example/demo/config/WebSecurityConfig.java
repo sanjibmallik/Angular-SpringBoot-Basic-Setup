@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						 * If needed dont send the principal.
 						 * wrap the data into some other bean.
 						 */
-						User user=(User) authentication.getPrincipal();
+						User user= (User) authentication.getPrincipal();
 						
 						response.setContentType("application/json;charset=UTF-8");
 				        PrintWriter writer = response.getWriter();
