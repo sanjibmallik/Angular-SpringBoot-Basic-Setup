@@ -59,14 +59,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						 * If needed dont send the principal.
 						 * wrap the data into some other bean.
 						 */
-						User user= (User) authentication.getPrincipal();
+						Object principal = authentication.getPrincipal();
+						if(principal instanceof User)
+						{
+							User user= (User) principal;
+							response.setContentType("application/json;charset=UTF-8");
+					        PrintWriter writer = response.getWriter();
+					        writer.write(mapper.writeValueAsString(user));
+					        response.setStatus(HttpServletResponse.SC_OK);
+					        writer.flush();
+					        writer.close();
+						}
+						else
+						{
+							throw new RuntimeException("improve logic and return type here according to the customisation you must have implemented for "+principal.getClass().getName());
+						}
 						
-						response.setContentType("application/json;charset=UTF-8");
-				        PrintWriter writer = response.getWriter();
-				        writer.write(mapper.writeValueAsString(user));
-				        response.setStatus(HttpServletResponse.SC_OK);
-				        writer.flush();
-				        writer.close();
 				       
 					}
 				})

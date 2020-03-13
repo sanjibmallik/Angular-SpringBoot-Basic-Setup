@@ -23,18 +23,23 @@ public class LoggedOnController {
 		Authentication authentication = SecurityContextHolder.getContext()
         .getAuthentication();
 		User ret=null;
-		if(authentication instanceof AnonymousAuthenticationToken)
+		if(authentication instanceof UsernamePasswordAuthenticationToken)
 		{
+			Object principal=authentication.getPrincipal();
+			if(principal instanceof User)
+			{
+				ret=(User) principal;
+			}
+			else
+			{
+				throw new RuntimeException("improve logic and return type here according to the customisation you must have implemented for "+principal.getClass().getName());
+			}
 			
-		}
-		else if(authentication instanceof UsernamePasswordAuthenticationToken)
-		{
-			ret=(User) authentication.getPrincipal();
 		}
 		else
 		{
 			//handle in case of customization in security
-			throw new RuntimeException("improve logic here according to the customisation you must have implemented");
+			throw new RuntimeException("improve logic here according to the customisation you must have implemented for "+authentication.getClass().getName());
 		}
 		return ret;
 	}
