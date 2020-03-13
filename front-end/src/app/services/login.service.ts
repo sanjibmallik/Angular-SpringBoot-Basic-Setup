@@ -17,8 +17,8 @@ const header = new HttpHeaders({
 	providedIn: 'root'
 })
 export class LoginService {
-	
-	private httpClient:HttpClient;
+
+	private httpClient: HttpClient;
 	private authenticateStatus: boolean = false;
 
 	constructor(private _http: HttpClient,
@@ -46,8 +46,19 @@ export class LoginService {
 
 	}
 
-	isAuthenticated(){
+	isAuthenticated() {
 		return this.authenticateStatus;
+	}
+
+
+	isLoggedOn$() {
+		let url = this._url.mainUrl(Endpoints.LOGGED_ON_USER);
+		return this._http.get(url)
+			.pipe(
+				map((data) => {
+					console.log(data);
+				})
+			)
 	}
 
 }
