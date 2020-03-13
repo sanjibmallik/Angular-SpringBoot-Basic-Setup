@@ -36,6 +36,10 @@ public class LoggedOnController {
 			}
 			
 		}
+		else if(authentication instanceof AnonymousAuthenticationToken)
+		{
+			//ignoring
+		}
 		else
 		{
 			//handle in case of customization in security
