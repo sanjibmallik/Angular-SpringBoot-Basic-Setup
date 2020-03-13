@@ -45,6 +45,7 @@ public class LoggedOnController {
 			//handle in case of customization in security
 			throw new RuntimeException("improve logic here according to the customisation you must have implemented for "+authentication.getClass().getName());
 		}
+		
 		return ret;
 	}
 
