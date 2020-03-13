@@ -9,14 +9,11 @@ import com.example.demo.model.Person;
 
 public class HomeController {
 
-	/*
-	 * @GetMapping(path ="/login") public String error() {
-	 * System.out.println("here in chaneg"); return "forward:/index.html"; }
-	 */
+	
 
 	@GetMapping(path = "/hellos1")
 	public String hello1() {
-		System.out.println("successfully logged in");
+		
 		return "Hello ..";
 	}
 	
@@ -28,7 +25,7 @@ public class HomeController {
 
 	@GetMapping(path = "/secured/abc")
 	public String securedabc() {
-		System.out.println("successfully logged in");
+		
 		return "Hello ..";
 	}
 }

@@ -15,7 +15,13 @@ Run command "mvn clean package -Pnpmbuild"
  -From command line, navigate to front-end folder  
  -Run "npm install"  
  -Run "ng build"    
- -Run command "mvn package"
- -launch the war in a server  
+ -Run command "mvn package"  
+ -launch the war in a server    
  -refresh src/main/resources/static  
  -run on server in eclipse  
+ 
+####Using 4200 ###########
+During local development can also launch locally angular on 4200 
+using
+npm start
+And java server using Run As > Spring Boot app.
