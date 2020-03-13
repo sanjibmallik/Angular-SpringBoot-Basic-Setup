@@ -12,11 +12,11 @@ export class DashboardComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit(): void {
-	console.log('here')
+    //console.log('here')
   }
 
-  goToPersonView(){
-    this._router.navigate([RouterPath.SLASH+RouterPath.PERSON])
+  goToPersonView() {
+    this._router.navigate([RouterPath.SLASH + RouterPath.PERSON])
   }
 
 

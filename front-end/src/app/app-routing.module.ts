@@ -16,10 +16,10 @@ const routes: Routes = [
     path: RouterPath.LOGIN, component: LoginComponent
   },
   {
-    path: RouterPath.DASHBOARD, component: DashboardComponent, canActivate:[AuthGuardService]
+    path: RouterPath.DASHBOARD, component: DashboardComponent
   },
   {
-    path: RouterPath.PERSON, component: PersonComponent, canActivate:[AuthGuardService]
+    path: RouterPath.PERSON, component: PersonComponent
   },
   {
     path: '**', component: PageNotFoundComponent

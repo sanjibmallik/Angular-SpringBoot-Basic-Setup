@@ -1,12 +1,13 @@
+import { GlobalErrorHandlerService } from './error-handler/global-error-handler.service';
 import { UrlConstructService } from './url-construct.service';
 import { AppToastrService } from './app-toastr.service';
 import { Endpoints } from './../constants/endpoints.const';
 import { RouterPath } from './../constants/router-path.const';
 import { LoginUser } from './../models/userModels';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpBackend } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpBackend, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 
 const header = new HttpHeaders({
 	'Content-type': 'application/x-www-form-urlencoded'
@@ -17,15 +18,16 @@ const header = new HttpHeaders({
 	providedIn: 'root'
 })
 export class LoginService {
-
+	private loggedonUser: any = {};
 	private httpClient: HttpClient;
-	private authenticateStatus: boolean = false;
+	private authenticateStatus: boolean;
 
 	constructor(private _http: HttpClient,
 		private _router: Router,
 		private _toastr: AppToastrService,
 		public _url: UrlConstructService,
-		handler: HttpBackend) {
+		handler: HttpBackend,
+		private _errorHandler: GlobalErrorHandlerService) {
 		this.httpClient = new HttpClient(handler);
 	}
 
@@ -38,7 +40,7 @@ export class LoginService {
 		})
 			.pipe(
 				map((data: any) => {
-					this.authenticateStatus = true;
+					this.storeSession(data);
 					this._router.navigate([RouterPath.SLASH + RouterPath.DASHBOARD])
 					this._toastr.success("Login successful");
 				})
@@ -46,19 +48,49 @@ export class LoginService {
 
 	}
 
-	isAuthenticated() {
-		return this.authenticateStatus;
+	validateSession() {
+		this.isLoggedOn$()
+			.subscribe(
+				(data) => {
+					//this.storeSession(data)
+				},
+				(err) => {
+					this.sessionInvalidate();
+				}
+			)
 	}
 
+	storeSession(data) {
+		if (data !== null && data.username != null) {
+			this.loggedonUser.username = data.username;
+			this.authenticateStatus = true;
+			//console.log("Session Stored: ", this.authenticateStatus)	
+		}
+	}
+
+	sessionInvalidate() {
+		this.loggedonUser = {};
+		this.authenticateStatus = false;
+		this._router.navigate([RouterPath.SLASH + RouterPath.LOGIN])
+	}
 
 	isLoggedOn$() {
 		let url = this._url.mainUrl(Endpoints.LOGGED_ON_USER);
+		//console.log("called session check from app component")
 		return this._http.get(url)
 			.pipe(
+				catchError((err: HttpErrorResponse) => this._errorHandler.errorHandler(err)),
 				map((data) => {
-					console.log(data);
+					//console.log("calling store session")	
+					this.storeSession(data)
 				})
 			)
 	}
+
+	isAuthenticated() {
+		//console.log("returning auth: ", this.authenticateStatus)
+		return this.authenticateStatus;
+	}
+
 
 }

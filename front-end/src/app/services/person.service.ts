@@ -16,7 +16,7 @@ export class PersonService {
     let url = this._url.mainUrl(Endpoints.CREATE_PERSON);
     return this._http.post(url, person)
       .pipe(
-        
+
       )
 
   }

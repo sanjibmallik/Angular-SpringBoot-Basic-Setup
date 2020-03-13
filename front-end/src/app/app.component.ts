@@ -13,8 +13,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._loginService.isLoggedOn$().subscribe(() => {
-
-    })
+    this._loginService.validateSession();
   }
 }
