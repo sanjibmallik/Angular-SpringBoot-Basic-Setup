@@ -25,9 +25,8 @@ export class RouterExtService {
     //console.log(`previous: ${this.previousUrl} and current is: ${this.currentUrl}`)
     let prevUrl = window.location.pathname.split('/');
     let finalPrevUrl = prevUrl.slice(2, prevUrl.length).join('/')
-  
     finalPrevUrl = finalPrevUrl === '' ? '/' : finalPrevUrl;
-     console.log(finalPrevUrl)
+    console.log(finalPrevUrl)
     return finalPrevUrl;
   }
 

@@ -52,7 +52,7 @@ export class LoginService {
 
 	redirectAfterLogin(){
 		if(this.authenticateStatus === true){
-			if(this.previousUrl === 'logon' || this.previousUrl === '/'){
+			if(this.previousUrl === RouterPath.LOGIN || this.previousUrl === '/'){
 				this._router.navigate([RouterPath.SLASH + RouterPath.DASHBOARD])
 			}else{
 				console.log(`should go to ${this.previousUrl}`)
