@@ -108,3 +108,8 @@ RNTester/Pods/*
 # Visual studio
 .vscode
 .vs
+/.classpath
+/.project
+/.settings/
+/.sts4-cache/
+/target/

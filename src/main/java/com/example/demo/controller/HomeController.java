@@ -1,27 +1,31 @@
 package com.example.demo.controller;
 
-/**
- * 
- */
-
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.Person;
 
 @RestController
-@RequestMapping("/")
+
 public class HomeController {
+
 	
+
+	@GetMapping(path = "/hellos1")
+	public String hello1() {
+		
+		return "Hello ..";
+	}
 	
-	
-@GetMapping(path ="/hellos")	
-public String hello() {
-	System.out.println("successfully logged in");
-	return "Hello ..";
-}
+	@GetMapping(path = "/hellos2")
+	public Person hello2() {
+		
+		return new Person();
+	}
+
+	@GetMapping(path = "/secured/abc")
+	public String securedabc() {
+		
+		return "Hello ..";
+	}
 }

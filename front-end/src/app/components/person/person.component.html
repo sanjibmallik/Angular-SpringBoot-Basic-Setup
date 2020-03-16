@@ -1,0 +1,53 @@
+<div class="main-w3layouts wrapper">
+ <div class="colorlibcopy-agile">
+        <p class="nbNote">***Some fields of this form are not doing front end validation deliberately; just to
+            demonstrate how
+            backend validation <br> can be leveraged to make the backend apis more robust, when used without the
+            front-end.
+            Eg: From postman ***. Also the back end for this person api will on random basis throw exceptions just to illustrate how exceptions
+             can be handled when any api throws exceptions using global exception handling
+        </p>
+    </div>
+    <h1>Create Person</h1>
+    <div class="main-agileinfo">
+        <div class="agileits-top">
+            <form [formGroup]="personForm" method="post" (ngSubmit)="submitPersonForm();">
+                <input class="text email" formControlName="firstName" type="text" name="firstName"
+                    placeholder="First Name" required>
+                <input class="text email" formControlName="lastName" type="text" name="lastName" placeholder="Last Name"
+                    required>
+                <input class="text email" formControlName="cardNumber" type="text" name="cardNumber"
+                    placeholder="Credit card Number" required>
+                <input class="text email" formControlName="emailOne" type="email" name="emailOne"
+                    placeholder="Email One" required>
+                <input class="text email" formControlName="emailTwo" type="email" name="emailTwo"
+                    placeholder="Email Two" required>
+                <input class="text email" formControlName="age" type="text" name="age" placeholder="Age" required>
+
+                <div class="wthree-text">
+
+                    <div class="clear"> </div>
+                </div>
+                <input type="submit" value="Save">
+            </form>
+
+        </div>
+    </div>
+
+
+   
+
+
+    <ul class="colorlib-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>

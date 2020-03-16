@@ -1,3 +1,4 @@
+import { RouterExtService } from './services/router-ext-service.service';
 import { HttpInterceptorService } from './services/interceptors/http-interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PersonComponent } from './components/person/person.component';
 
 
 
@@ -20,7 +22,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    PersonComponent
   ],
   imports: [
     BrowserModule,
@@ -40,4 +43,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}

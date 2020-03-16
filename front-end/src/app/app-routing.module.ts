@@ -1,3 +1,5 @@
+import { AuthGuardService } from './services/guards/auth-guard.service';
+import { PersonComponent } from './components/person/person.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,6 +12,7 @@ const routes: Routes = [
   {
     path: '', redirectTo: RouterPath.LOGIN, pathMatch: 'full'
   },
+ 
   {
     path: RouterPath.LOGIN, component: LoginComponent
   },
@@ -17,8 +20,14 @@ const routes: Routes = [
     path: RouterPath.DASHBOARD, component: DashboardComponent
   },
   {
-    path: '**', component: PageNotFoundComponent
-  }
+    path: RouterPath.PERSON, component: PersonComponent
+  },
+  {
+    path: '**', redirectTo:RouterPath.DASHBOARD
+  },
+  // {
+  //   path: '**', component: PageNotFoundComponent
+  // }
 ];
 
 @NgModule({
