@@ -1,3 +1,4 @@
+import { RouterExtService } from './services/router-ext-service.service';
 import { HttpInterceptorService } from './services/interceptors/http-interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -42,4 +43,6 @@ import { PersonComponent } from './components/person/person.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}

@@ -1,3 +1,4 @@
+import { RouterExtService } from './router-ext-service.service';
 import { GlobalErrorHandlerService } from './error-handler/global-error-handler.service';
 import { UrlConstructService } from './url-construct.service';
 import { AppToastrService } from './app-toastr.service';
@@ -7,7 +8,7 @@ import { LoginUser } from './../models/userModels';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpBackend, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tap, map, catchError } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 const header = new HttpHeaders({
 	'Content-type': 'application/x-www-form-urlencoded'
@@ -21,9 +22,11 @@ export class LoginService {
 	private loggedonUser: any = {};
 	private httpClient: HttpClient;
 	private authenticateStatus: boolean;
+	private previousUrl: string;
 
 	constructor(private _http: HttpClient,
 		private _router: Router,
+		private _routerExtService: RouterExtService,
 		private _toastr: AppToastrService,
 		public _url: UrlConstructService,
 		handler: HttpBackend,
@@ -41,14 +44,30 @@ export class LoginService {
 			.pipe(
 				map((data: any) => {
 					this.storeSession(data);
-					this._router.navigate([RouterPath.SLASH + RouterPath.DASHBOARD])
 					this._toastr.success("Login successful");
 				})
 			)
 
 	}
 
+	redirectAfterLogin(){
+		if(this.authenticateStatus === true){
+			if(this.previousUrl === 'logon' || this.previousUrl === '/'){
+				this._router.navigate([RouterPath.SLASH + RouterPath.DASHBOARD])
+			}else{
+				console.log(`should go to ${this.previousUrl}`)
+				this._router.navigate([this.previousUrl])
+			}
+			
+		}else{
+			this._router.navigate([RouterPath.SLASH + RouterPath.LOGIN])
+		}
+		
+	}
+
 	validateSession() {
+		this.previousUrl = this._routerExtService.getPreviousUrl();
+		console.log(this.previousUrl);
 		this.isLoggedOn$()
 			.subscribe(
 				(data) => {
@@ -61,14 +80,19 @@ export class LoginService {
 	}
 
 	storeSession(data) {
+		//console.log(data);
 		if (data !== null && data.username != null) {
 			this.loggedonUser.username = data.username;
 			this.authenticateStatus = true;
-			//console.log("Session Stored: ", this.authenticateStatus)	
+			this.redirectAfterLogin();
+		}else{
+			//this.sessionInvalidate();
 		}
+	
 	}
 
 	sessionInvalidate() {
+		console.log("session invalidate")
 		this.loggedonUser = {};
 		this.authenticateStatus = false;
 		this._router.navigate([RouterPath.SLASH + RouterPath.LOGIN])

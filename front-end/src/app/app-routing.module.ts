@@ -24,7 +24,10 @@ const routes: Routes = [
   },
   {
     path: '**', redirectTo:RouterPath.DASHBOARD
-  }
+  },
+  // {
+  //   path: '**', component: PageNotFoundComponent
+  // }
 ];
 
 @NgModule({
